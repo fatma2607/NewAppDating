@@ -1,0 +1,14 @@
+{
+    "server":"datingserverfatnad.database.windows.net",
+    "authentication":{
+        "type" : "default",
+        "options":{
+            "userName": "Fatma",
+            "password": "Fatfat260"
+        }
+    },
+    "options": {
+        "encrypt":true,
+        "database": "Eksamen"
+    }
+}

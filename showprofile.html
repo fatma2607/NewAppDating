@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My profile</title>
+</head>
+<body>
+    
+
+    <a href="/">Go back to homepage</a>
+
+    <a href="/views/potentialmatch">Show potentialmatches</a>
+
+
+
+</br>
+
+
+<h1>
+
+    Hello and welcome:
+    <label>
+    You are logged with this email:
+    </label> <label id = "profileemail">
+        Email placeholder 
+        </label> 
+
+</h1>
+
+     And your logged in user index is:
+
+    <label id = "userid">
+        Userid placeholder:
+    </label> 
+
+    <label id = "name">
+        Name placeholder:
+    </label>
+
+    <label id="age">
+        Age placeholder: 
+       
+    </label>    
+
+    <label id = "email">
+        E-mail placeholder:
+    </label>
+    
+    <label id = "gender">
+        Gender placeholder:
+    </label>
+
+    <label id = "interests">
+        Interests placeholder:
+    </label>
+
+    <label id = "city">
+        City placeholder:
+
+    </label>
+
+    Profileimage placeholder:
+    <img id= "profileimage" src= "httml:fjfjfn23232" style="width:15%;">
+   
+<H1> Update Information? </H1>
+    <form id="form" method="post" action="/updateuser">
+        
+        <label>
+            userid:
+            <input type="text" id = "txtuserid"> 
+        </label>
+
+        <label>
+            Name:
+            <input type="text" id = "txtname" name="name" placeholder="Navn">
+        </label>
+
+        <label>
+            Age:
+            <input type="number"  id = "txtage" name="age" min="18" max="120" placeholder="Alder">
+        </label>
+
+        <label>
+        E-mail:
+        <input type="email"  id = "txtemail" name="email" placeholder="e-mail">
+        </label>
+
+            <label>
+                Password:
+            <input type="password" id = "txtpassword" name="password" placeholder="password">
+            </label>    
+            Gender:
+        <select name="gender">
+            <option>male</option>
+            <option>female</option>
+        </select>
+        </label>
+        <label>
+            Interests:
+        <select name="interests" multiple  min="1">
+            <option>Weight Lifting</option>
+            <option>Bowling</option>
+            <option>Eating</option>
+            <option>Hiking</option>
+        </select>
+        </label>
+        <label>
+            City:
+        <input type="text" id = "txtcity" name="city" placeholder="city">
+        
+
+        <button type = "submit" name = "Submit">Update user</button>
+
+        
+    </form>
+            <h1>Logout</h1>
+    <form method="post" action="/logout">
+        <button type="submit" id="btnInsert"  >Logout</button>
+
+    </label>
+    E-mail: <%= myusers[loggedinuserindex].email%>
+    <label>
+        <!--Sender noget i formen, det gør label ikke-->
+    <input type="email" name="email" value= <%= myusers[loggedinuserindex].email%> placeholder="e-mail">
+        </form>
+
+            <!--Vi bruger email som identifikation-->
+        <h1>Delete myProfile</h1>
+    <form method="post" action="/deleteuser">
+        <button type="submit">DeleteProfile</button>
+
+    </label>
+    E-mail: <%= myusers[loggedinuserindex].email%>
+    <label>
+        <!--Sender noget i formen, det gør label ikke-->
+    <input type="email" name="email" value= <%= myusers[loggedinuserindex].email%> placeholder="e-mail">
+        
+</form>
+
+<h1>Notifications</h1>
+
+<h2><label style = "color: red;"><%=youhaveamatch%></label></h2>
+
+<form method="post" action="/removematches">
+        <h1>My matches</h1>
+
+        <label>
+           
+            </label>
+            <select class="example" name="unmatcheduserid">
+            <ul>
+                <!-- Vi vil have en knap til hver user som vi vil unmatche, knappen sender os til vores API funktion-->
+                <% matches.forEach(function(item) { %>
+        
+                    <!--Den ene item er værdien, og den anden er det der bliver vist-->
+                   
+                        <option name="unmatcheduseridselect" value=<%= item.id%>Name: <%= item.name%> - Age: <%= item.age%> </option>
+                        
+                  
+                    <li>Name: <%= item.name%> - Age: <%= item.age%></li>
+        
+                <% });%>
+        
+
+            </ul> 
+
+        </select>
+
+
+
+        </label>
+            E-mail: <%= myusers[loggedinuserindex].email%>
+            <label>
+            <input type="email" name="loggedinuseremail" value= <%= myusers[loggedinuserindex].email%> placeholder="e-mail">
+
+            <button type="submit">Unmatch</button>
+
+        </form>
+        
+        <div> 
+            <h1>Get matches</h1>
+            <button type = "button" id = "getmatches">Get matches</button>
+        </div>
+
+        <script src = "./showprofile.js"></script>
+
+</body>
+
+<script type="text/javascript">
+  
+    //Vi indsætter en key
+    const inpKey = "loggedinuseremail";
+    const btnInsert = document.getElementById("btnInsert");
+    
+    //Med kode kan vi gå ind og hijacke vores btnInsert, og sige hvad den skal sende
+    btnInsert.onclick = function(){
+    
+    
+        //alert("Value is " + inpValue.value);
+        localStorage.removeItem(inpKey);
+        location.reload();
+
+        
+    }
+    
+        </script>
+    
+
+</html>
