@@ -2,20 +2,20 @@
 //Start fra lærer
 const db = require('../shared/db');
 
-module.exports = async function (context, req) {
+module.exports = function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.')
 
     try {
-        await db.startDb(); //start db connection
+         db.startDb(); //start db connection
     } catch (error) {
         console.log("Error connecting to the database", error.message)
     }
     switch (req.method) {
         case 'GET':
-            await get(context, req);
+         get(context, req);
             break;
         case 'POST':
-            await post(context, req);
+         post(context, req);
             break
         default:
             context.res = {
@@ -25,13 +25,18 @@ module.exports = async function (context, req) {
     }
 }
 //Async så de ikke blokere, try catch hvis useren ikke er der
-async function get(context, req){
+function get(context, req){
     try{
-        let name = req.query.name;
-        let user = await db.getmymacthes(context)
+        let user = db.getmymacthes();
         context.res = {
             body: user
         };
+        context.log(user);
+        context.log(context.res);
+        context.log(JSON.stringify(user));
+        console.log(JSON.stringify(user));
+
+        
     } catch(error){
         context.res = {
             status: 400,

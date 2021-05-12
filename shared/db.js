@@ -25,7 +25,9 @@ module.exports.startDb = startDb;
 
 function insert(payload){
     return new Promise((resolve, reject) => {
-        const sql =  'INSERT INTO [Users](name, age, email, password, profileimage, gender, city, interests) VALUES ( @name, @age, @email, @password, @profileimage, @gender, @city, @interests) '
+        const sql =  `INSERT INTO [Users](name, age, email, password, profileimage, gender, city, interests)
+         VALUES ( @name, @age, @email, @password, @profileimage, @gender, @city, @interests)`
+
         const request = new Request(sql, (err) => {
             if (err){
                 reject(err)
@@ -409,7 +411,7 @@ module.exports.getadminuserstats = getadminuserstats;
 
 
 
-//
+//matchess
 
 const executeSQL = (context) => {
     var result = "";    
@@ -418,7 +420,7 @@ const executeSQL = (context) => {
     const connection = new Connection(config);
 
     // Create the command to be executed
-    const request = new Request("SELECT * FROM [vw_matches]", (err) => {
+    const request = new Request("SELECT * FROM [dbo].[Users]", (err) => {
         if (err) {
             context.log.error(err);            
             context.res.status = 500;
@@ -429,6 +431,7 @@ const executeSQL = (context) => {
             }   
         }
         context.done();
+        context.log(res);
     });    
     
 
