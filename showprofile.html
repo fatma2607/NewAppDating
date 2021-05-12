@@ -114,6 +114,16 @@
 
         
     </form>
+
+    <H1>virker Delete profile? </H1>
+    <form id="formdelete" method="post" action="/deleteuser">
+        
+        <label>
+            userid:
+            <input type="text" id = "txtdeleteuserid"> 
+        </label>
+    </form>
+
             <h1>Logout</h1>
     <form method="post" action="/logout">
         <button type="submit" id="btnInsert"  >Logout</button>
@@ -126,9 +136,9 @@
         </form>
 
             <!--Vi bruger email som identifikation-->
-        <h1>Delete myProfile</h1>
+        <h1>Gammel Delete myProfile</h1>
     <form method="post" action="/deleteuser">
-        <button type="submit">DeleteProfile</button>
+        <button type="submit">old DeleteProfile</button>
 
     </label>
     E-mail: <%= myusers[loggedinuserindex].email%>
@@ -182,6 +192,13 @@
             <h1>Get matches</h1>
             <button type = "button" id = "getmatches">Get matches</button>
         </div>
+
+
+        <div> 
+            <h1>Delete profile</h1>
+            <button type = "button" id = "deleteuser">Delete profile</button>
+        </div>
+
 
         <script src = "./showprofile.js"></script>
 

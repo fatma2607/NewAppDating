@@ -6,7 +6,7 @@ module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.')
 
     try {
-        await db.startDb(); //start db connection
+        await db.startDb(); //start db connectionn
     } catch (error) {
         console.log("Error connecting to the database", error.message)
     }
@@ -28,7 +28,7 @@ module.exports = async function (context, req) {
 async function get(context, req){
     try{
         let name = req.query.name;
-        let user = await db.select(name)
+        let user = await db.checklogindetail(name)
         context.res = {
             body: user
         };
@@ -43,10 +43,10 @@ async function get(context, req){
 async function post(context, req){
     try{
         let payload = req.body;
-        await db.DisLike(payload)
+        let user = await db.checklogindetail(payload)
         context.res = {
-            body: {status: 'Success'}
-        }
+            body: user
+        };
     } catch(error){
         context.res = {
             status: 400,

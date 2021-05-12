@@ -28,7 +28,7 @@ module.exports = async function (context, req) {
 async function get(context, req){
     try{
         let name = req.query.name;
-        let user = await db.select(name)
+        let user = await db.getmypotentialmatches(context)
         context.res = {
             body: user
         };
@@ -43,7 +43,7 @@ async function get(context, req){
 async function post(context, req){
     try{
         let payload = req.body;
-        await db.DisLike(payload)
+        await db.insertmatches(payload)
         context.res = {
             body: {status: 'Success'}
         }
@@ -55,3 +55,4 @@ async function post(context, req){
     }
 }
 //Slut fra lærer
+

@@ -28,7 +28,7 @@ module.exports = async function (context, req) {
 async function get(context, req){
     try{
         let name = req.query.name;
-        let user = await db.selectmatches(name)
+        let user = await db.getmymacthes(context)
         context.res = {
             body: user
         };
@@ -55,3 +55,4 @@ async function post(context, req){
     }
 }
 //Slut fra lærer
+

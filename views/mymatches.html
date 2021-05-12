@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My matches</title>
+</head>
+<body>
+    <form id="form" method="post" action="/getuser">
+    <div> 
+        <h1>Get matches</h1>
+        <button type = "button" id = "getmatches">Get matches</button>
+    </div>
+
+    And your logged in user id is:
+
+    <label id = "userid">
+        Userid placeholder:
+    </label> 
+</form>
+
+<label>
+    Deletematch userid:
+    <input type="text" id = "txtliked_userid"> 
+</label>
+
+<button type = "button" id = "deletematch">Delete match</button>
+
+<script src = "/controller/mymatches.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My profile</title>
+</head>
+<body>
+    
+
+    <a href="/">Go back to homepage</a>
+
+    <a href="/views/potentialmatch">Show potentialmatches</a>
+
+
+
+</br>
+
+<form id="form" method="post" action="/getuser">
+
+<h1>
+
+    Hello and welcome:
+    <label>
+    You are logged with this email:
+    </label> <label id = "profileemail">
+        Email placeholder 
+        </label> 
+
+</h1>
+
+     And your logged in user id is:
+
+    <label id = "userid">
+        Userid placeholder:
+    </label> 
+
+    <label id = "name">
+        Name placeholder:
+    </label>
+
+    <label id="age">
+        Age placeholder: 
+       
+    </label>    
+
+    <label id = "email">
+        E-mail placeholder:
+    </label>
+    
+    <label id = "gender">
+        Gender placeholder:
+    </label>
+
+    <label id = "interests">
+        Interests placeholder:
+    </label>
+
+    <label id = "city">
+        City placeholder:
+
+    </label>
+
+    Profileimage:
+    <img id= "profileimage" src= "httml:fjfjfn23232" style="width:15%;">
+   
+</form>
+
+<H1>Delete profile? </H1>
+    <form id="formdelete" method="post" action="/deleteuser">
+        
+        <label>
+            userid:
+            <input type="text" id = "txtdeleteuserid"> 
+        </label>
+
+        <button type = "button" id = "deleteuser">Delete profile</button>
+
+    </form>
+
+    <button type = "button" id = "Logout">Logout</button>
+
+    <a href="/views/updateprofile.html"> Go to update profile</a>
+
+
+<script src = "/myprofile.js"></script>
+
+
+</body>
+
+
+</html>

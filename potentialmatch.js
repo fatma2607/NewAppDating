@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log(data);
                     //Show user profile data
                     document.getElementById("userid").innerHTML = JSON.stringify(data[10].value).replace(/\"/g, "");
+                    document.getElementById("liked_userid").innerHTML = JSON.stringify(data[10].value).replace(/\"/g, "");
                     document.getElementById("profileemail").innerHTML = JSON.stringify(data[2].value).replace(/\"/g, "");
                     document.getElementById("name").innerHTML = "Name :" +  JSON.stringify(data[0].value).replace(/\"/g, "");
                     document.getElementById("age").innerHTML = "Age :" +  JSON.stringify(data[1].value).replace(/\"/g, "");
@@ -24,19 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById("interests").innerHTML = "Interests :" +  JSON.stringify(data[8].value).replace(/\"/g, "");
                     document.getElementById("city").innerHTML = "City :" +  JSON.stringify(data[7].value).replace(/\"/g, "");
                     document.getElementById("profileimage").src = JSON.stringify(data[5].value).replace(/\"/g, "");
-                   
-                    //Populate Update user profile data
-
-                    document.getElementById("txtuserid").value = JSON.stringify(data[10].value).replace(/\"/g, "");
-                    document.getElementById("txtname").value = JSON.stringify(data[0].value).replace(/\"/g, "");
-                    document.getElementById("txtage").value = JSON.stringify(data[1].value).replace(/\"/g, "");
-                    document.getElementById("txtemail").value =  JSON.stringify(data[2].value).replace(/\"/g, "");
-                    document.getElementById("txtcity").value =  JSON.stringify(data[7].value).replace(/\"/g, "");
-                    document.getElementById("txtpassword").value = JSON.stringify(data[3].value).replace(/\"/g, "");
-
-                    //En knap som er connected til db som så kan opdatere databasen
-
-                    
+  
                 });  
             }
         )
@@ -45,89 +34,50 @@ document.addEventListener('DOMContentLoaded', function() {
         });
  }, false);
 
- //Opdater useren 
+ //Like med brug af "update user" fra showprofile.js?
 
- form.addEventListener("submit", function(e) {
-    e.preventDefault()
-
-        var userid = document.getElementById("txtuserid").value
-        var name = document.getElementById("txtname").value
-        var age = document.getElementById("txtage").value
-        var email = document.getElementById("txtemail").value
-        var password = document.getElementById("txtpassword").value
-        var city = document.getElementById("txtcity").value
-        
-        fetch("https://nyeksamenprojekt.azurewebsites.net/api/updateprofile?",{
+ var likeButton = document.getElementById("like")
+//Gamle http adresse lokal
+//http://localhost:7071/api/NyFunktionEksamen
+likeButton.addEventListener("click", function(){
+    var userid = document.getElementById("userid").innerHTML
+    var liked_userid = document.getElementById("liked_userid").innerHTML
+    fetch("https://nyeksamenprojekt.azurewebsites.net/api/like?",{
             method: 'POST',
             body: JSON.stringify({
                 userid:userid,
-                name:name,
-                age:age,
-                email:email,
-                password:password,
-                profileimage:profileimage,
-                gender:gender,
-                city:city,
-                interests:interests,
-
+                liked_userid:liked_userid
             }),
             headers: {
                 "Content-Type": "application/json; charset-UTF-8"
             }
-        
         })
         .then((response) =>{
             return response.json()
         })
         .then((data) => {
             console.log(data)
+            alert("Notification: You have a match");
         }).catch((err) => {
             console.log(err)
         })
 })
 
-//matches
-var getButton = document.getElementById("getmatches")
+var dislikeButton = document.getElementById("dislike")
 //Gamle http adresse lokal
 //http://localhost:7071/api/NyFunktionEksamen
-getButton.addEventListener("click", function(){
-    var name1 = document.getElementById("userid").value
-    fetch(`https://nyeksamenprojekt.azurewebsites.net/api/matches?`)
-        .then(
-            function(response){
-                if (response.status !== 200){
-                    console.log("Noget gik galt" + response.status);
-                    return;
-                }
-
-                response.json().then(function (data) {
-                    console.log(data);
-                   console.log(JSON.stringify(data[0].value));
-
-                });
-            }
-        )
-        .catch(function (err){
-            console.log(err);
-        });
-})
-
-//Delete
-var deleteButton = document.getElementById("deleteuser")
-//Gamle http adresse lokal
-//http://localhost:7071/api/NyFunktionEksamen
-deleteButton.addEventListener("click", function(){
-    var deleteuserid = document.getElementById("txtdeleteuserid").value
-    console.log("dette er deleteuserid " + deleteuserid);
-    fetch("https://nyeksamenprojekt.azurewebsites.net/api/deleteprofile",{
+dislikeButton.addEventListener("click", function(){
+    var userid = document.getElementById("userid").innerHTML
+    var disliked_userid = document.getElementById("disliked_userid").innerHTML
+    fetch("https://nyeksamenprojekt.azurewebsites.net/api/dislike?",{
             method: 'POST',
             body: JSON.stringify({
-                userid:deleteuserid 
+                userid:userid,
+                disliked_userid:disliked_userid
             }),
             headers: {
                 "Content-Type": "application/json; charset-UTF-8"
             }
-        
         })
         .then((response) =>{
             return response.json()
